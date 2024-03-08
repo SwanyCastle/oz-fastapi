@@ -1,7 +1,7 @@
 # pydantic - django 의 serializer 와 비슷한 기능
 # 뭔가 model 이랑 serializer 랑 섞여 있는 느낌
 from pydantic import BaseModel
-from typing import Optional, Sequence
+from typing import Optional, List
 from uuid import UUID
 
 
@@ -23,3 +23,7 @@ class CreateBook(BaseModel):
 class BookSearch(BaseModel):
     # results: Sequence[Book]
     results: Optional[Book]
+
+
+class SearchResultBook(BaseModel):
+    results: List[Book]
