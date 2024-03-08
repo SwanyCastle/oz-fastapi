@@ -35,10 +35,13 @@ def fetch_books() -> list:
 
 @router.get('/books/{book_id}', status_code=200)
 def fetch_book(book_id: int) -> dict:
+    # 내가 한거
     # for book in BOOKS:
     #     if book['id'] == book_id:
     #         return book
     # return {"error": "NotFound"}
+
+    # 강사님 한거
     book = next((book for book in BOOKS if book["id"] == book_id), None)
     if book:
         return book

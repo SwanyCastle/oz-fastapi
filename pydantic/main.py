@@ -1,11 +1,9 @@
 from fastapi import FastAPI
-from items import router as items_router
-from users import router as users_router
+from routes import router as book_router
 
 app = FastAPI()
 
-app.include_router(items_router)
-app.include_router(users_router)
+app.include_router(book_router, prefix='/api/v1/books')
 
 if __name__ == "__main__":
     import uvicorn
