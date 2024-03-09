@@ -1,9 +1,11 @@
 from fastapi import FastAPI
-from routes import router as book_router
+from routes.books import router as book_router
+from routes.movies import router as movie_router
 
 app = FastAPI()
 
 app.include_router(book_router, prefix='/api/v1/books')
+app.include_router(movie_router, prefix='/api/v1/movies')
 
 if __name__ == "__main__":
     import uvicorn

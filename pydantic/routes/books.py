@@ -1,13 +1,6 @@
-# 프로젝트 구조 
-# models
-# - item.py
-# - users.py
-# routes
-# - items.py
-# - users.py
 from fastapi import APIRouter, HTTPException
 from uuid import uuid4, UUID
-from models import Book, CreateBook, SearchResultBook
+from models.book import Book, CreateBook, SearchResultBook
 from typing import List, Optional
 
 router = APIRouter()
@@ -42,3 +35,4 @@ def get_book(book_id: UUID) -> Book:
 def search_book(keyword: Optional[str] = None, max_results: int = 10) -> SearchResultBook:
     result = [book for book in books if keyword.lower() in book.title.lower()] if keyword else books
     return SearchResultBook(results=result[:max_results])
+
