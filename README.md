@@ -15,3 +15,12 @@
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", port=5000, log_level="debug", reload=True)
+
+## orm 방식
+
+- mysql db 연결
+- orm db와 thxhd
+- CRUD api 생성
+
+> 필요한 라이브러리
+ - pip install sqlalchemy
