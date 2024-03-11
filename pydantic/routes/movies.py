@@ -14,12 +14,19 @@ def get_movie(keyword: Optional[str] = None, max_results: int = 10 ) -> SearchMo
 
 @router.post("/")
 def create_movie(movie_data: CreateMovie) -> Movie:
+    # model_dump() 라는 함수가 django 의 serializer 역할을 해준다.
     movie = Movie(id=uuid4(), **movie_data.model_dump())
     movie_db.append(movie)
     return movie
 
 @router.put("/{movie_id}")
 def update_movie(movie_id: UUID, update_data: CreateMovie) -> Movie:
+    # update_movie = update_data.model_dump()
+    # print(update_data)
+    # for movie in movie_db:
+    #     if movie.id == movie_id:
+    #         movie = update_movie
+    # return update_movie
     movie = next((movie for movie in movie_db if movie.id == movie_id), None)
     if movie:
         movie.name = update_data.name
