@@ -1,5 +1,7 @@
 from database import SessionLocal
 from database import AsyncSessionLocal
+from fastapi import HTTPException
+from typing import Any
 
 # 동기처리 의존성
 def get_db():
@@ -20,3 +22,10 @@ async def get_async_db():
     async with AsyncSessionLocal() as session:
         # 세션연결 기간동안 연결을 유지하게 해줌
         yield session
+
+
+# None 예외 처리
+def is_None(data: Any):
+    if data is None:
+        raise HTTPException(status_code=404, detail=f'{data} Not Found')
+    return data

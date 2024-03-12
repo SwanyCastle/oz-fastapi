@@ -30,7 +30,7 @@ class UserBase(BaseModel):
 
 class User(UserBase):
     id: int
-    # items: List[Item] = None
+    items: List[Item] = None
 
     class Config:
         orm_mode = True
