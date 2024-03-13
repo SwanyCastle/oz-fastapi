@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from schemas.itemSchema import Item
 
 
@@ -9,7 +9,7 @@ class UserBase(BaseModel):
 
 class User(UserBase):
     id: int
-    items: List[Item] = None
+    items: Optional[List[Item]] = []
 
     class Config:
         orm_mode = True
