@@ -9,8 +9,8 @@ import bcrypt
 # Get User
 # skip, limit -> 페이지네이션
 def get_user_list(db: Session, skip: int=0, limit: int = 10) -> userSchema.User:
-    userlist_sql = text("SELECT * FROM users LIMIT :limit OFFSET :skip")
-    results = db.execute(userlist_sql, {"limit": limit, "skip": skip}).fetchall()
+    user_list_sql = text("SELECT * FROM users LIMIT :limit OFFSET :skip")
+    results = db.execute(user_list_sql, {"limit": limit, "skip": skip}).fetchall()
     return [row._asdict() for row in results]
 
 def get_user(db: Session, user_data: Union[int, str]) -> userSchema.User:
@@ -42,11 +42,7 @@ def create_user(db: Session, user: userSchema.CreateUser) -> userSchema.User:
     result = db.execute(select_sql)
     # 파이썬이 이해하도록 변환
     user_id = result.scalar()
-
-    select_user_sql = text("SELECT * FROM users WHERE id = :user_id")
-    result_user = db.execute(select_user_sql, {"user_id": user_id}).fetchone()
-    db_user = result_user._asdict()
-    return db_user
+    return get_user(db, user_id)
 
 
 # Update User

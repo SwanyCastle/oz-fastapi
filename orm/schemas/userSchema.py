@@ -9,6 +9,7 @@ class UserBase(BaseModel):
 
 class User(UserBase):
     id: int
+    # items: List[Item] = []
     items: Optional[List[Item]] = []
 
     class Config:
